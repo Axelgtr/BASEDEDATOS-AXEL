@@ -41,3 +41,6 @@ guardar_dance(VALOR, 'AXEL');
 dbms_output.put_line('SE INSERTO CON EXITO'||VALOR);
 END;
 /
+
+SELECT * FROM DANCE;
+/*vISUALIZAR LOS REGISTROS INSERTADOS...*/
