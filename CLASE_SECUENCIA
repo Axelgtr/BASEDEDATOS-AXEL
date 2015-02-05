@@ -1,0 +1,43 @@
+/*
+Creamos la tabla dance
+*/
+
+create table dance (id_dance integer, nombre varchar2(120), constraint pk_id_dance primary key (id_dance));
+
+--Creamos la secuencia correspondiente
+
+create sequence sec_dance
+start with 1
+increment by 1
+nomaxvalue;
+
+/*
+Creamos el procedimiento almacenado que nos enlazara ls secuencia con la tabla dance
+*/
+ 
+ 
+                                          /* Campos Argumentos    OUT =  SALIDA DE TIPO  entero|||| para segundo argumento IN = ENTRADA */
+CREATE OR REPLACE PROCEDURE GUARDAR_DANCE(MY_ID OUT INTEGER, MY_NOMBRE IN VARCHAR2)
+AS 
+  BEGIN/*Inicio de la logica */
+  
+/* Se declara un cursor explicito|||||    seleccionar la secuencia que creamos (SELECT SEC_DANCE.NEXTVAL)  nextval= proximo valor, ||| INTO = campo creado my_ID ||
+|FROM DUAL= taba virtual en donde se depositan los valores de la secuencia ||| tabla asociada al a secuencia*/
+  SELECT SEC_DANCE.NEXTVAL INTO  MY_ID FROM DUAL;
+  /* Insertar en la tabla dance, en los campos (ID_DANCE, NOMBRE)*/
+  INSERT INTO DANCE(ID_DANCE, NOMBRE) VALUES(MY_ID, MY_NOMBRE);
+END;
+/
+
+
+
+
+/*AHORA SI A INSERTAR EN EL TABLE DANCE*/
+SET SERVEROUTPUT ON;
+DECLARE 
+VALOR INTEGER;
+BEGIN/*CUERPO*/
+guardar_dance(VALOR, 'AXEL');
+dbms_output.put_line('SE INSERTO CON EXITO'||VALOR);
+END;
+/
