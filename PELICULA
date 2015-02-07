@@ -1,0 +1,37 @@
+--CLASE 7 DE FEBRERO 2015
+-- 1)   crear la tabla usuarioxxx
+create table usuarioxxx (id_usuario integer, login varchar2(120), edad integer, constraint pk_id_usuario primary key (id_usuario));
+
+-- 2)   Creamos la secuencia asociada a usuario xxx
+
+create sequence sec_usuarioxxx
+start with 1
+increment by 1
+nomaxvalue;
+
+-- 3) crear el procedimoiento guaradar _usuarioxxx que guarde a un usuarioxxx... nota... si la edad que proporciono es menor a 18 que marque un erros y que impida la insercion
+--   SET SERVEROUTPUT ON;
+create or replace procedure guardar_usuarioxxx ( my_id out integer, my_login in varchar2, my_edad in integer) AS
+
+BEGIN
+IF my_edad > 18 then
+select sec_usuarioxxx.nextval into my_id from dual;
+
+--insertar registros
+insert into usuarioxxx (id_usuario, login, edad) values (my_id, my_login, my_edad);
+ELSE  
+raise_application_error(-20001, 'No puedes entrar');
+end if;
+end;
+/
+
+-- 5) Probarlo
+DECLARE valor integer;
+begin
+guardar_usuarioxxx(valor, 'z', 15);
+DBMS_OUTPUT.PUT_LINE('YA TE REGISTRAMOS');
+END;
+/
+
+
+SELECT * FROM usuarioxxx
