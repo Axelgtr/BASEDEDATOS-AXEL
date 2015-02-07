@@ -1,0 +1,33 @@
+/*
+Creamos la tabla pelicula
+*/
+
+create table pelicula (id_pelicula integer, titulo varchar2(120), constraint pk_id_pelicula primary key (id_pelicula));
+/*secuencia*/
+create sequence sec_pelicula
+start with 1
+increment by 1
+nomaxvalue;
+
+ 
+CREATE OR REPLACE PROCEDURE GUARDAR_PELICULA(MY_ID OUT INTEGER, MY_TITULO IN VARCHAR2)
+
+AS 
+
+BEGIN
+  
+SELECT SEC_DANCE.NEXTVAL INTO  MY_ID FROM DUAL;
+  /* Insertar en la tabla dance, en los campos (ID_DANCE, NOMBRE)*/
+  INSERT INTO DANCE(ID_PELICULA, TITULO) VALUES(MY_ID, MY_TITULO);
+END;
+/
+
+
+SET SERVEROUTPUT ON;
+DECLARE 
+VALOR INTEGER;
+BEGIN
+guardar_pelicula(VALOR, 'titulo_de_la_pelicula');
+dbms_output.put_line('EL id es: '|| VALOR);
+END;
+/
