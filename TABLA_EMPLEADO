@@ -1,0 +1,37 @@
+--paso 1 crear la tabla llamada empleado
+create table empleado(id integer, nombre varchar2(120), sueldo float);
+
+
+--paso 2. insertar 5 registros con id consecutivo (12345) con el nombre que sea y sueldo entre 2000 y 10000
+
+insert into empleado values (5, 'AHO', 2345);
+
+
+--visualizar los datos
+SELECT * FROM empleado
+
+-- para actualizar...... update empleado set id = 3 where nombre= 'nombre...axel';
+
+--paso 3  crear un bloque pl/sql para que al registro cuyo id=2 Y SUMARLE LA CANTIDAD DE 10000
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+NUEVO_SUELDO FLOAT;
+BEGIN
+SELECT SUELDO INTO NUEVO_SUELDO FROM empleado WHERE ID=2;
+DBMS_OUTPUT.PUT_LINE('EL SUELDO SELECCIONADO ES:  '||NUEVO_SUELDO);
+END;
+/
+
+--DECLARAR CURSOR.... ES LA COPIA DE LA TABLA EMPLEADO
+DECLARE 
+CURSOR CURSOR_EMPLEADO IS SELECT * FROM EMPLEADO;
+BEGIN
+
+
+FOR FILA IN CURSOR_EMPLEADO LOOP 
+DBMS_OUTPUT.PUT_LINE ('MENSAJE   '||FILA.NOMBRE);
+END LOOP;
+END;
+/
