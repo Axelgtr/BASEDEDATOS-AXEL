@@ -1,0 +1,5 @@
+--4 de marzo examen--
+--Primero se borra la tabla en donde no existen dependencias de primary key
+
+drop table sucursal;
+drop table empleado_ventas;
