@@ -58,3 +58,16 @@ INSERT INTO SUCURSAL VALUES(13,5,'PLAZA COYOACAN', '67 55 66 77',4000);
 
 
 SELECT EMPLEADO_VENTAS.ID_CLIENTE, EMPLEADO_VENTAS.NOMBRE_CLIENTE, SUCURSAL.NOMBRE FROM EMPLEADO_VENTAS JOIN SUCURSAL  ON EMPLEADO_VENTAS.ID_CLIENTE=SUCURSAL.ID_CLIENTE;
+
+
+
+--------------------------------------------------------------------------------------------------------------
+DECLARE 
+CURSOR cursor_venta IS SELECT id_cliente, venta FROM sucursal;
+id_vigente integer;
+venta_acumulada integer;
+FOR fila IN cursor_venta
+id_vigente:= fila.id_cliente;
+venta_acumulada := fila.venta;
+
+dbms.output_line (id_vigente || venta_acumuladad);
