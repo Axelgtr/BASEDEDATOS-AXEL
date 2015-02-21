@@ -4,3 +4,14 @@ PASO 2 cREAR UNA SECUENCIA QUE SE LLAME SEC_LIBROS QUE SE INCREMENTE DE 1 EN 1 S
 
 PASO 3 CREAR UN PROCEDIMIENTO ALMACENADO QUE GUARDE UN LIBRO. DEBO DE AUTOINCREMENTAR EL BOOK_ID Y LA FECHA SE LE PASARAN COMO ( AÑO,  MES , DIA)
 
+CREATE
+  TABLE libros
+  (
+    book_id          INTEGER,
+    isbn             VARCHAR2(13),
+    titulo           VARCHAR2(200),
+    resumen          VARCHAR2(2000),
+    autor            VARCHAR2(200),
+    fecha_publiccion DATE,
+    num_pag          NUMBER
+  );
