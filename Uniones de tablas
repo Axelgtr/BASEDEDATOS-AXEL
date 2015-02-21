@@ -3,7 +3,7 @@
 
 CREATE TABLE libros (
 book_id
- INTEGER,
+ INTEGER, --primary key
 isbn
  VARCHAR2(13),
 titulo
