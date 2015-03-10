@@ -1,0 +1,33 @@
+DECLARE
+
+inicio integer;
+valor integer;
+BEGIN
+inicio:= 1500;
+FOR i IN 1..300 LOOP
+
+guardar_trabajador(i, i, , )
+guardar_honorarios(i, i, inicion, null, null, null);
+inicio.= inicio + 10;
+end loop;
+end;
+/
+
+4.- Crear un procedimiento almacenado para actualizar e imprimir un reporte con todos los datos
+aplicando las siguintes formulas.
+
+***iva=subtotal * 0.16;
+***ret_iva := iva/3;
+***isr:= subtotal * 0.10
+***totalPagar := subtotal + ret = iva-iva-isr;
+
+create or replace procedura cuanto
+AS
+my_iva integer;
+cursor cur_ex IS select * from honorarios for update;
+
+BEGIN
+for(xxx) IN cur_ex LOOP
+my_iva:= xxx.subtotal * 0.16;
+update honorario set iva = xxx.my_iva, isr = my_ret_iva;
+end loop;
