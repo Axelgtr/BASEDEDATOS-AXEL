@@ -31,3 +31,5 @@ for(xxx) IN cur_ex LOOP
 my_iva:= xxx.subtotal * 0.16;
 update honorario set iva = xxx.my_iva, isr = my_ret_iva;
 end loop;
+
+--ETIQUETADO @daton
