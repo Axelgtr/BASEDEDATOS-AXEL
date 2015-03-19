@@ -1,0 +1,42 @@
+create table xxx(id integer, edad integer);
+
+--crear un disparador     nombre del disparador BEFORE ON: NOMBRE DE LA TABLA... FOR EACH ROW SIGNIFICA: para cada fila
+CREATE OR REPLACE trigger disparador_xxx BEFORE insert ON xxx FOR EACH ROW
+
+--SET SERVEROUTPUT ON;
+
+BEGIN
+--RESTRICCION PARA QUE LA EDAD NO PUEDA SER MEBNOR A 18 AÑOS
+--LOGICA EN CAM
+IF :new.edad<18 then
+RAISE_APPLICATION_ERROR(-20001, 'Lo siento, la edad es menor a 18 años');
+END IF;
+
+END;
+/
+
+-- con esta linea marca error  de: menor de 18 años
+insert into xxx values(1, 16);
+
+--verificar que no haya insertado el registro
+select * from xxx;
+
+--a)     crear tabla trabajador
+create table trabajador (id integer, nombre varchar2(120), sueldo float);
+--b)     insertar el sig registro
+insert into trabajador values (1, 'ana', 4000);
+--visualizar el registro
+select * from trabajador;
+
+
+
+-- 3)    crear un disparador que le sume....
+CREATE OR REPLACE TRIGGER actualizar_trabajador BEFORE UPDATE ON trabajador
+FOR EACH ROW
+BEGIN
+:NEW.sueldo:= :OLD.sueldo +: NEW.sueldo;
+END;
+/
+
+UPDATE trabajador set sueldo = 4000 WHERE id =1;
+select * from trabajador;
