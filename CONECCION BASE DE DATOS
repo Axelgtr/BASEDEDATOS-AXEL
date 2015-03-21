@@ -1,0 +1,31 @@
+--  1)  DISEÑO DE BASE DE DATOS PARA INSERTAR PELICULA
+
+create table pelicula (id_pelicula integer, titulo varchar2(180),
+sinopsis varchar2(400), constraint pk_id_pelicula primary key (id_pelicula));
+
+create sequence secuencia_pelicula
+start with 1
+increment by 1  
+nomaxvalue;
+
+create or replace procedure guardar_pelicula(My_id_pelicula OUT integer, 
+my_titulo IN varchar2, my_sinopsis In varchar2)
+as begin
+select secuencia_pelicula.nextval into my_id_pelicula from dual;
+insert into pelicula values(my_id_pelicula, my_titulo, my_sinopsis);
+end;
+/
+
+
+--  2) EN LA INTERFAZ DE USUARIO PARA EL SOFTWARE CARGAR EL DRIVER CORRESPONDIENTE A LA BASE DE DATOS
+
+-- QUE ES EL DRIVER:  ES UN CONJUNTO DE PROGRAMAS PREFABRICADOS QUE NOS AYUDAN A CONECTAR A UN CLIENTE A UNA BASE DE DATOS
+
+-- RUTA CARPETA BASE DE DATOS 3:     ftp://172.16.30.170/base-datos3/base-datos/src/java/com/jc/oracle/
+
+
+-- 3)  PROBAR QUE SE CONCXECTA A ORACLE, NUESTRA INTERFAZZZ
+
+
+--PARAMETROS:
+--RUTA DE CONECCION, Y CONTIENE LA TECNOLOGIA JDBC, EL CLIENTE Y EL SERVIDOR, LISTENER ES EL 1521,ORCL
