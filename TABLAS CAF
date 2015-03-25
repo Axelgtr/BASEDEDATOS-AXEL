@@ -1,0 +1,11 @@
+TABLAS CAFETERIA
+
+PRODUCTO
+create table producto(id_producto integer, nombre varchar2(120), precio float, tamaño varchar2(15), tipo varchar2(30, constraint pk_id_producto primary key (id_producto));
+
+CLIENTE
+create table cliente(nombre varchar2(120),apellido varchar2(120), teléfono integer, email varchar2(15);
+
+VENTA
+create table venta(id_venta integer, cliente varchar2(120), fecha ... , cantidad float, constraint pk_id_venta primary key (id_venta);
+
