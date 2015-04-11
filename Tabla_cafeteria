@@ -1,5 +1,5 @@
 create table productos (id_producto integer, nombre varchar2(180),
-caracteristica varchar2(400), precio float, tamaño varchar2, tipo varchar2, constraint pk_id_producto primary key (id_producto));
+caracteristica varchar2(400), precio float, tamaño varchar2 (30), tipo varchar2 (40), constraint pk_id_producto primary key (id_producto));
 
 create sequence secuencia_producto
 start with 1
@@ -8,9 +8,9 @@ nomaxvalue;
 
 
 create or replace procedure guardar_producto(My_id_producto OUT integer, 
-my_nombre IN varchar2, my_caracteristica In varchar2)
+my_nombre IN varchar2, my_caracteristica In varchar2, my_precio In float, my_tamaño In varchar2, my_tipo In varchar2)
 as begin
 select secuencia_producto.nextval into my_id_producto from dual;
-insert into productos values(my_id_producto, my_nombre, my_caracteristica);
+insert into productos values(my_id_producto, my_nombre, my_caracteristica, my_precio, my_tamaño, my_tipo);
 end;
-
+/
