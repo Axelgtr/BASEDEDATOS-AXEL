@@ -1,0 +1,73 @@
+TABLA PRODUCTO
+
+create table producto (id_producto integer, nombre varchar2(180),
+caracteristica varchar2(400), precio float, tamaño varchar2 (30), tipo varchar2 (40), constraint pk_id_producto primary key (id_producto));
+
+create sequence secuencia_producto
+start with 1
+increment by 1  
+nomaxvalue;
+
+
+create or replace procedure guardar_producto(My_id_producto OUT integer, 
+my_nombre IN varchar2, my_caracteristica In varchar2, my_precio In float, my_tamaño In varchar2, my_tipo In varchar2)
+as begin
+select secuencia_producto.nextval into my_id_producto from dual;
+insert into productos values(my_id_producto, my_nombre, my_caracteristica, my_precio, my_tamaño, my_tipo);
+end;
+/
+
+
+
+
+
+
+
+
+
+TABLA CLIENTE
+
+
+create table cliente (id_cliente integer, nombre varchar2(30),
+apellido varchar2(30), direccion varchar2(180),  teléfono integer, email varchar2 (40), constraint pk_id_cliente primary key (id_cliente));
+
+
+create sequence secuencia_cliente
+start with 1
+increment by 1  
+nomaxvalue;
+
+
+create or replace procedure guardar_cliente (My_id_cliente OUT integer, 
+my_nombre IN varchar2, my_apellido In varchar2, my_direccion In varchar2, my_telefono In integer, my_email In varchar2)
+as begin
+select secuencia_cliente.nextval into my_id_cliente from dual;
+insert into cliente values(my_id_cliente, my_nombre, my_apellido, my_direccion, my_telefono, my_email);
+end;
+/
+
+
+
+
+
+
+
+TABLA VENTA
+create table venta (id_venta integer, cliente varchar2(30),
+fecha varchar2(30), cantidad integer, constraint pk_id_venta primary key (id_venta));
+
+
+create sequence secuencia_venta
+start with 1
+increment by 1  
+nomaxvalue;
+
+
+create or replace procedure guardar_venta (My_id_venta OUT integer, 
+my_cliente IN varchar2, my_fecha In varchar2, my_cantidad In integer)
+as begin
+select secuencia_venta.nextval into my_id_venta from dual;
+insert into venta values(my_id_venta, my_cliente, my_fecha, my_cantidad);
+end;
+/
+
